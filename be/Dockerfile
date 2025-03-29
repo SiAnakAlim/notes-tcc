@@ -1,6 +1,6 @@
 FROM node:20-alpine
 WORKDIR /app
-RUN npm install --omit=dev
 COPY . .
+RUN npm install 
 EXPOSE 5000
 CMD ["node", "server.js"]

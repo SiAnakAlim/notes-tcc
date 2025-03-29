@@ -1,0 +1,24 @@
+### Insert Data
+POST http://localhost:5000/notes
+Content-Type: application/json
+
+{
+    "title": "Belajar Backend",
+    "content": "Sekarang belajar cara bikin API pakai Node.js dan Express"
+}
+
+### Get All Notes
+GET http://localhost:5000/notes
+
+### Update Note dengan ID 2
+PUT http://localhost:5000/notes/2
+Content-Type: application/json
+
+{
+    "title": "Nyoba Update",
+    "content": "sekarang nyoba ngeupdate"
+}
+
+### Hapus Note dengan ID 2
+DELETE http://localhost:5000/notes/2
+

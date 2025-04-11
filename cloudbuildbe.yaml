@@ -15,7 +15,7 @@ steps:
       [
         "run",
         "deploy",
-        "notes-syifa194",
+        "notes-181",
         "--image",
         "gcr.io/$PROJECT_ID/notes-181",
         "--timeout",

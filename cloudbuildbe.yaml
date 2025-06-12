@@ -21,13 +21,15 @@ steps:
         "--timeout",
         "1000s",
         "--port",
-        "5000",
+        "8080",
         "--region",
         "us-central1",
         "--allow-unauthenticated",
         "--set-env-vars",
         "DB_NAME=${_DB_NAME},DB_USER=${_DB_USER},DB_PASSWORD=${_DB_PASSWORD},DB_HOST=${_DB_HOST},JWT_SECRET=${_JWT_SECRET},JWT_REFRESH_SECRET=${_JWT_REFRESH_SECRET},NODE_ENV=${_NODE_ENV},PORT=${_PORT}"      
       ]
+images:
+  - 'gcr.io/$PROJECT_ID/notes-181'
 
 # Log hanya akan disimpan di Google Cloud Logging
 # Log tidak akan disimpan di Google Cloud Storage (butuh hak akses).

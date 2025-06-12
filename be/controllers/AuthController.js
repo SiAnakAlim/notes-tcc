@@ -78,3 +78,18 @@ export const logout = async (req, res) => {
     await RefreshToken.destroy({ where: { token: refreshToken } });
     res.json({ message: "Logged out" });
 };
+
+export const getMe = async (req, res) => {
+    console.log("/auth/me called");
+    res.json({ message: "This endpoint is not implemented yet mas e" });
+    // const userId = req.userId; // Assuming userId is set in a middleware
+    // if (!userId) return res.status(401).json({ message: "Unauthorized" });
+
+    // try {
+    //     const user = await User.findByPk(userId, { attributes: { exclude: ["password"] } });
+    //     if (!user) return res.status(404).json({ message: "User not found" });
+    //     res.json(user);
+    // } catch (err) {
+    //     res.status(500).json({ message: err.message });
+    // }
+}

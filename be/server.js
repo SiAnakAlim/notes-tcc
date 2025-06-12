@@ -21,7 +21,8 @@ const allowedOrigins = [
   "http://127.0.0.1:5500",
   "http://localhost:3000",    // jika FE juga di port 3000
   "null",
-  "file:///D:/node_js_mase/Notes-aryamukti/fe/index.html"                    // jika buka file langsung (file://)
+  "file:///D:/node_js_mase/Notes-aryamukti/fe/index.html",
+  "https://fe-notes181-dot-g-08-450802.uc.r.appspot.com"
 ];
 
 // Middleware

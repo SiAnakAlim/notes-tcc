@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const registerMsg = document.getElementById("registerMsg");
     const loginMsg = document.getElementById("loginMsg");
-    
+
     // === Bagian Aplikasi Notes ===
     const notesList = document.getElementById("notesList");
     const addNoteButton = document.getElementById("addNote");
     const titleInput = document.getElementById("title");
     const contentInput = document.getElementById("content");
     const pagination = document.getElementById("pagination");
-    
+
 
     let allNotes = [];
     let currentPage = 1;
@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
             },
+            credentials: "include",
         });
 
         // Jika token kedaluwarsa (401 Unauthorized)
@@ -72,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${newAccessToken}`,
                     },
+                    credentials: "include",
                 });
             } catch (error) {
                 // Jika refresh token gagal, lempar error untuk ditangani oleh pemanggil
@@ -126,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(`${BASE_URL}/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ username, email, password }),
             });
             const data = await res.json();
@@ -148,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const res = await fetch(`${BASE_URL}/auth/login`, {
-            // const res = await fetch(`http://localhost:3000/auth/login`, {
+                // const res = await fetch(`http://localhost:3000/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include", // Penting agar refreshToken dalam cookie bisa di-set oleh backend
@@ -169,7 +172,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Logout
     logoutBtn.addEventListener("click", async () => {
         try {
-            await apiFetch(`${BASE_URL}/auth/logout`, { method: "POST" });
+            await apiFetch(`${BASE_URL}/auth/logout`, {
+                method: "POST",
+                credentials: "include",
+            });
         } catch (error) {
             console.error("Logout error:", error.message);
         } finally {
@@ -177,12 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
             updateUI();
         }
     });
-
     // --- LOGIKA APLIKASI NOTES ---
 
     const fetchNotes = async () => {
         try {
-            const response = await apiFetch(`${BASE_URL}/api/notes`);
+            const response = await apiFetch(`${BASE_URL}/api/notes`, {
+                method: "GET",
+                credentials: "include", // Pastikan untuk mengirim cookie httpOnly
+            });
             if (!response.ok) throw new Error("Gagal mengambil data notes.");
             allNotes = await response.json();
             currentPage = 1; // Reset ke halaman pertama setiap kali fetch
@@ -249,7 +257,8 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const res = await apiFetch(`${BASE_URL}/api/notes`, {
                 method: "POST",
-                body: JSON.stringify({ title, content })
+                body: JSON.stringify({ title, content }),
+                credentials: "include"
             });
             if (!res.ok) throw new Error("Gagal menambah note.");
             titleInput.value = "";
@@ -263,7 +272,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const deleteNote = async (id) => {
         if (confirm("Anda yakin ingin menghapus catatan ini?")) {
             try {
-                const res = await apiFetch(`${BASE_URL}/api/notes/${id}`, { method: "DELETE" });
+                const res = await apiFetch(`${BASE_URL}/api/notes/${id}`, {
+                    method: "DELETE",
+                    credentials: "include",
+                });
                 if (!res.ok) throw new Error("Gagal menghapus note.");
                 fetchNotes();
             } catch (error) {
@@ -280,7 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const res = await apiFetch(`${BASE_URL}/api/notes/${id}`, {
                     method: "PUT",
-                    body: JSON.stringify({ title: newTitle, content: newContent })
+                    body: JSON.stringify({ title: newTitle, content: newContent }),
+                    credentials: "include",
                 });
                 if (!res.ok) throw new Error("Gagal memperbarui note.");
                 fetchNotes();

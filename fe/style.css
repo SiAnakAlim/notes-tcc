@@ -1,45 +1,80 @@
+/* --- Global & Body Styles --- */
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #d4af37, #f5deb3);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 10;
+    flex-direction: column;   /* <-- Jadikan arahnya kolom */
+    align-items: center;      /* <-- Gunakan ini untuk centering horizontal */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* --- Container Utama untuk Auth & Aplikasi --- */
+/* Style ini akan berlaku untuk #authContainer dan #appContainer */
 .container {
     background: white;
-    padding: 20px;
+    padding: 25px 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;  
     text-align: center;
+    height: 100%;
+    margin: auto;   /* <-- TAMBAHKAN INI */
+    /* margin-right: auto; */
 }
 
 h1 {
     color: #333;
+    margin-bottom: 20px;
 }
 
-.note-form input, .note-form textarea {
-    width: calc(93%); 
+h2 {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* --- App Header (Judul & Tombol Logout) --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header h1 {
+    margin: 0; /* Hapus margin default h1 */
+}
+
+/* --- General Input & Button Styles --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: calc(100% - 24px); /* Kalkulasi width dengan padding */
     padding: 12px;
     margin: 10px 0;
-    border: 2px solid #b8860b; 
+    border: 2px solid #b8860b;
     border-radius: 8px;
     font-size: 16px;
-    background: #fff8dc; 
+    background: #fff8dc;
     color: #6b4f00;
     box-shadow: inset 2px 2px 5px rgba(184, 134, 11, 0.2);
     transition: all 0.3s ease-in-out;
 }
 
-.note-form input:focus, .note-form textarea:focus {
+input:focus, textarea:focus {
     border-color: #daa520;
     box-shadow: 0 0 8px rgba(218, 165, 32, 0.5);
     outline: none;
 }
 
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
 
 button {
     background: #b8860b;
@@ -48,59 +83,119 @@ button {
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
 }
 
 button:hover {
     background: #8b6508;
 }
 
+/* --- Auth Section Specifics (#authContainer) --- */
+#authContainer p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+#authContainer a {
+    color: #b8860b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#authContainer a:hover {
+    text-decoration: underline;
+}
+
+.message {
+    color: #8b0000; /* Warna default untuk pesan error */
+    font-weight: bold;
+    min-height: 20px;
+}
+
+/* --- Notes List & Items (#appContainer) --- */
 .notes-list {
     margin-top: 20px;
     text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    flex-wrap: wrap; /* Membuat catatan bisa berbaris */
+    gap: 15px; /* Jarak antar catatan */    
+    /* justify-content: center; Pusatkan catatan */
+    /* max-height: 400px;  */
 }
 
 .note {
-    background: #f5deb3;
-    padding: 10px;
-    border-radius: 5px;
+    background: #fff8e7;
+    padding: 15px;
+    border-radius: 8px;
+    height: 150px;
+    width: 100%; /* Lebar tetap untuk catatan */
     margin-top: 10px;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    display: flex; /* Menggunakan Flexbox */
+    flex-direction: column;
+    justify-content: space-between; /* Konten di kiri, tombol di kanan */
+    align-items: start; /* Vertikal di tengah */
+    gap: 10px; /* Jarak antara konten dan tombol */
 }
 
-.delete-btn {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    color: #8b0000;
-    font-size: 16px;
-    cursor: pointer;
+.note strong {
+    font-size: 1.1em;
+    color: #6b4f00;
 }
-.pagination {
+
+.note-actions {
     display: flex;
-    justify-content: center;
-    margin-top: 15px;
+    justify-content: left;
+    width: 100%;
 }
 
-.page-btn {
+.note-actions button {
     background: #b8860b;
     color: white;
     border: none;
+    width: 50px;
     padding: 8px 12px;
-    margin: 3px;
+    margin-right: 5px;
     cursor: pointer;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: background-color 0.3s;
 }
 
-.page-btn:hover {
-    background: #daa520;
+.note p {
+    margin: 5px 0 0;
+    color: #333;
+}
+/* 
+#registerSection, #loginSection {
+    padding-left: 100px;
+    padding-right: 100px; 
+    width: 300px;
+} */
+
+#logoutBtn{
+    width: 100px;
 }
 
-.page-btn.active {
-    background: #8b6508;
-    font-weight: bold;
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
+.pagination button {
+    background: #b8860b;
+    color: white;
+    border: none;
+    width: 40px;
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+/* Styling

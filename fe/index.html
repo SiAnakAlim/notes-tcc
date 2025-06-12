@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Notes App</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="js/script.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Notes App</h1>
+
+    <div id="authContainer" class="container">
+        <div id="registerSection">
+            <h2>Notes Register</h2>
+            <input type="text" id="regUsername" placeholder="Username" required />
+            <input type="email" id="regEmail" placeholder="Email" required />
+            <input type="password" id="regPassword" placeholder="Password" required />
+            <button id="registerBtn">Register</button>
+            <p id="registerMsg" class="message"></p>
+            <p>Sudah punya akun? <a href="#" id="showLogin">Login di sini</a></p>
+        </div>
+
+        <div id="loginSection" style="display:none;">
+            <h2>Notes Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email" required />
+            <input type="password" id="loginPassword" placeholder="Password" required />
+            <button id="loginBtn">Login</button>
+            <p id="loginMsg" class="message"></p>
+            <p>Belum punya akun? <a href="#" id="showRegister">Register di sini</a></p>
+        </div>
+    </div>
+
+    <div id="appContainer" class="container" style="display:none;">
+        <div class="header">
+            <h1>Notes App</h1>
+            <button id="logoutBtn">Logout</button>
+        </div>
         <div class="note-form">
             <input type="text" id="title" placeholder="Title">
             <textarea id="content" placeholder="Write your note..."></textarea>
@@ -17,8 +43,10 @@
         </div>
         <div class="notes-list" id="notesList"></div>
         <div id="pagination" class="pagination"></div>
-
     </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
 </body>
-<script src="js/utils.js"></script>
+
 </html>

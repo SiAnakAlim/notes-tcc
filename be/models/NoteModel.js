@@ -18,5 +18,5 @@ export default Note;
 
 
 (async () => {
-    await db.sync();
+    await db.sync({ force: false });
 })();

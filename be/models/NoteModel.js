@@ -26,5 +26,5 @@ export default Note;
 
 
 (async () => {
-    await db.sync({ force: true });
+    await db.sync({ force: false });
 })();

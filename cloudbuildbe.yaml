@@ -25,6 +25,8 @@ steps:
         "--region",
         "us-central1",
         "--allow-unauthenticated",
+        "--set-env-vars",
+        "DB_NAME=${_DB_NAME},DB_USER=${_DB_USER},DB_PASSWORD=${_DB_PASSWORD},DB_HOST=${_DB_HOST},JWT_SECRET=${_JWT_SECRET},JWT_REFRESH_SECRET=${_JWT_REFRESH_SECRET},NODE_ENV=${_NODE_ENV},PORT=${_PORT}"      
       ]
 
 # Log hanya akan disimpan di Google Cloud Logging

@@ -40,7 +40,6 @@ The application architecture separates the **frontend and backend responsibiliti
 
 <p align="center">
   <img src="https://github.com/SiAnakAlim/Notes-Using-Node-JS/blob/main/img/foto1.png" width="100%" alt="Login Page" />
-  <img src="https://github.com/SiAnakAlim/Notes-Using-Node-JS/blob/main/img/foto2.png" width="100%" alt="Register Page" />
   <img src="https://github.com/SiAnakAlim/Notes-Using-Node-JS/blob/main/img/foto3.png" width="100%" alt="Notes Dashboard" />
 </p>
 
